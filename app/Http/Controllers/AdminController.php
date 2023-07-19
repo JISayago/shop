@@ -23,7 +23,17 @@ class AdminController extends Controller
 
     public function employees(){
         return Inertia::render('AdminPanel/AdminPanel',[
-        'employees' => User::where('userType_id' == 1)->get()
+        'employees' => User::where('userType_id',1)->get()
         ]);
     }
+    public function clients(){
+        return Inertia::render('AdminPanel/AdminPanel',[
+        'clients' => User::where('userType_id',2)->get()
+        ]);
+    }
+    /*public function products(){
+        return Inertia::render('AdminPanel/AdminPanel',[
+        'employees' => User::where('userType_id',1)->get()
+        ]);
+    }*/
 }

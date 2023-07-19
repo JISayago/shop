@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth','admin:1'])->group(function () {
     Route::get('/admin-panel', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin-panel/employees', [AdminController::class, 'employees'])->name('admin.employees');
+    Route::get('/admin-panel/clients', [AdminController::class, 'clients'])->name('admin.clients');
+    Route::get('/admin-panel/products', [AdminController::class, 'products'])->name('admin.products');
     /*Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');*/
 });
