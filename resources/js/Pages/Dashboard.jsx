@@ -1,7 +1,3 @@
-import Checkbox from '@/Components/Checkbox';
-import DangerButton from '@/Components/DangerButton';
-import Dropdown from '@/Components/Dropdown';
-import InputError from '@/Components/InputError';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 

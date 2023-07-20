@@ -1,33 +1,37 @@
 import React, { useState } from 'react'
 import AdminAction from './AdminAction'
+import AdminEmployeeList from './AdminEmployeeList';
+import AdminClientList from './AdminClientList';
 
-export default function AdminActions() {
-/*
-  const [component, setComponent] = useState("Empty");
+export default function AdminActions(props) {
+  const { users } = props;
+  let employeeList = [];
+  const [cliList, setCliList] = useState([]);
 
-  const SelectAction = (value) => {
-    setComponent(value);
+  const [linkes, setLinkes] = useState(users.links);
+  
+  const [component, setComponent] = useState();
+
+  const employList = () => {
+    employeeList = users.data.filter(e => e.userType_id === 1);
+    setComponent(<AdminEmployeeList employeeList={employeeList} linkes={linkes} />)
   }
-  const LoadComponent = () => {
-      if (component === "Empty") return "Elija una acción";
-      if (component === "GE") return "Componente de empleados";
-      if (component === "GC") return "Componente de clientes";
-      if (component === "GP") return "Componente de productos";
+
+  const selectedAction = (option) => {
+    if (option === "e") return employList();
+    if (option === "c") return setComponent(<AdminClientList />);
   }
-*/
 
   return (
     <> 
       <div className='flex flex-wrap justify-around p-8 w-full ' >
-          <AdminAction route={"/admin-panel/employees"} text={"Gestión Empleados"} /*SelectAction = {SelectAction}*//>
-          <AdminAction route={"/admin-panel/clients"} text={"Gestión Clientes"} /*SelectAction = {SelectAction}/*//>
-          <AdminAction value={"/"} text={"Gestión Productos"} /*SelectAction = {SelectAction}*//>
+        <AdminAction text={"Gestión Empleados"} option={"e"} selectedAction={selectedAction} />
+        <AdminAction text={"Gestión Clientes"} option={"c"} selectedAction={selectedAction} />
       </div>
-      <div className='w-full h-screen'>
-        {/*
-          LoadComponent()
-        */}
-      </div>
+      <div className='p-11 w-screen'>
+        {component}
+    </div>
     </>
+    
   )
 }

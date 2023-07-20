@@ -14,7 +14,10 @@ class AdminController extends Controller
         $user = User::find($request->user()->id);
         foreach($user->roles as $role){
             if($role->number == 1){
-                return Inertia::render('AdminPanel/AdminPanel');
+                $users = User::with('roles','usertype')->paginate(2);
+                return Inertia::render('AdminPanel/AdminPanel',[
+                    'users' => $users                    
+                    ]);
             } 
         }
         return Redirect::route('dashboard');
@@ -28,7 +31,7 @@ class AdminController extends Controller
     }
     public function clients(){
         return Inertia::render('AdminPanel/AdminPanel',[
-        'clients' => User::where('userType_id',2)->get()
+        'employees' => User::where('userType_id',2)->get()
         ]);
     }
     /*public function products(){
