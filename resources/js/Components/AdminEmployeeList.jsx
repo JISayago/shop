@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import AdminEmployeeRow from './AdminEmployeeRow';
 
 export default function AdminEmployeeList(props) {
-   const { employeeList,linkes } = props;
-   const [emplos, setEmplos] = useState([]);
+   const { employeeList } = props;
+   const [employees, setEmployess] = useState([]);
    let count =1;
    const bg = "bg-orange-100";
    useEffect(() => {
-      setEmplos(employeeList);
+      setEmployess(employeeList);
    }, [])
-   console.log(linkes);
    const renderLi = () => {
      
       
@@ -28,16 +28,11 @@ export default function AdminEmployeeList(props) {
                 </thead>
           <tbody>
              {
-               emplos.map(e => {
+               employees.map(employee => {
          count++;
-         return (
-   <tr className={count % 2 === 0 ? "bg-gray-200" : bg  }>
-            <td>{e.name }</td>
-            <td>{e.email }</td>
-            <td>{e.usertype.nombre }</td>
-            <td>{e.roles.length }</td>
-            <td><button>x</button><button>0</button></td>
-         </tr>)
+                  return (
+                     <AdminEmployeeRow employee={employee} bg={bg} count={ count} />
+         )
          })
                }
                 </tbody>

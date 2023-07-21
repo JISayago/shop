@@ -14,7 +14,7 @@ class AdminController extends Controller
         $user = User::find($request->user()->id);
         foreach($user->roles as $role){
             if($role->number == 1){
-                $users = User::with('roles','usertype')->paginate(2);
+                $users = User::with('roles','usertype')->get();
                 return Inertia::render('AdminPanel/AdminPanel',[
                     'users' => $users                    
                     ]);

@@ -8,13 +8,11 @@ export default function AdminActions(props) {
   let employeeList = [];
   const [cliList, setCliList] = useState([]);
 
-  const [linkes, setLinkes] = useState(users.links);
-  
   const [component, setComponent] = useState();
 
   const employList = () => {
-    employeeList = users.data.filter(e => e.userType_id === 1);
-    setComponent(<AdminEmployeeList employeeList={employeeList} linkes={linkes} />)
+    employeeList = users.filter(e => e.userType_id === 1);
+    setComponent(<AdminEmployeeList employeeList={employeeList} />)
   }
 
   const selectedAction = (option) => {
